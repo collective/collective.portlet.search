@@ -1,0 +1,310 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      tal:omit-tag="">
+      
+<dl class="portlet portletSearch"
+    tal:define="navigation_root_url view/navigation_root_url;
+                first_call python:True"
+    i18n:domain="collective.portlet.search">
+
+  <dt class="portletHeader">
+      <span class="portletTopLeft"></span>
+      <a class="tile"
+         tal:attributes="href view/search_form"
+         tal:content="view/title">Search</a>
+      <span class="portletTopRight"></span>
+  </dt>
+
+    <dd class="portletItem">
+      <form id="portletsearchform" action="search"
+            tal:attributes="action view/search_action">
+        <div class="LSBox">
+          <input class="searchField inputLabel"
+              name="SearchableText"
+              type="text"
+              size="15"
+              title="Search Site"
+              i18n:attributes="title title_search_title;"
+              tal:attributes="value request/SearchableText|nothing;
+                              class python:'inputLabel searchField portlet-search-gadget-nols'"
+              />
+          
+          <tal:calendar tal:condition="view/use_calendar">
+          <div class="field collapsible">
+          <label for="startRange"    
+                 i18n:translate="label_startRange"
+                 class="collapser collapsed">Date :</label><br/>
+              <div class="collapse">
+              <!-- Calendar-->
+                  <table class="ploneCalendar"
+                         summary="Calendar"
+                         i18n:domain="plone"
+                         i18n:attributes="summary summary_calendar;"
+                         tal:define="year view/year;"
+                      ><caption class="hiddenStructure"
+                               tal:content="view/monthName">Month name</caption>
+                      <thead>
+                          <tr class="month">
+                              <th colspan="7">
+                                  <a href="#" rel="nofollow"
+                                     title="Previous month"
+                                     tal:define="prevMonthMonth view/prevMonthMonth;
+                                                 prevMonthYear view/prevMonthYear"
+                                     tal:attributes="id python:'calendar-previous';
+                                                     href python:'%s?month:int=%d&amp;year:int=%d' % (request['ACTUAL_URL'], prevMonthMonth, prevMonthYear,);
+                                                     class string:kssCalendarChange kssattr-year-${prevMonthYear} kssattr-month-${prevMonthMonth} calendarPrevious;"
+                                     i18n:attributes="title title_previous_month;">&laquo;</a>
+
+                                  <span i18n:translate="" tal:omit-tag="">
+                                      <span i18n:name="monthname" i18n:translate=""
+                                            tal:content="view/monthName"
+                                            tal:omit-tag="">monthname</span>
+                                      <span i18n:name="year" i18n:translate=""
+                                            tal:content="year"
+                                            tal:omit-tag="">year</span>
+                                  </span>
+                                  <a href="#" rel="nofollow"
+                                     title="Next month"
+                                     tal:define="nextMonthMonth view/nextMonthMonth;
+                                                 nextMonthYear view/nextMonthYear"
+                                     tal:attributes="id python:'calendar-next';
+                                                     href python:'%s?month:int=%d&amp;year:int=%d' % (request['ACTUAL_URL'], nextMonthMonth, nextMonthYear,);
+                                                     class string:kssCalendarChange kssattr-year-${nextMonthYear} kssattr-month-${nextMonthMonth} calendarNext;"
+                                     i18n:attributes="title title_next_month;">&raquo;</a>
+                              </th>
+                          </tr>
+                          <tr class="weekdays"
+                              ><tal:data tal:repeat="weekday view/getWeekdays"
+                                  ><th scope="col"
+                                       i18n:translate=""
+                                       tal:content="weekday">Su</th
+                              ></tal:data>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr tal:repeat="week view/renderCalendar"
+                              ><tal:block repeat="day week"
+                                  ><tal:day define="daynumber day/day;"
+                                      ><tal:block define="is_today day/is_today;
+                                                          date day/date;
+                                                          thisMonth day/thisMonth;"
+                                              ><td 
+                                                  tal:attributes="class python:' '.join([(is_today and 'today' or (thisMonth and 'month' or 'othermonth')),'selectableDay']);
+                                                                  id python:date;"
+                                                 ><span tal:replace="daynumber">42</span></td
+                                        ></tal:block
+                                  ></tal:day
+                              ></tal:block>
+                          </tr>
+                      </tbody>
+                  </table>
+              <script language="JavaScript">
+                  jQuery(document).ready(function() {
+                    jQuery('.selectableDay').bind('click',function(){
+                       if (jQuery('.selectedDay').length!=0){
+                           jQuery('.selectedDay').toggleClass('selectedDay');
+                       }
+                       jQuery('#dateStart').val(jQuery(this)[0].id + ' 00:00:00');
+                       jQuery('#dateEnd').val(jQuery(this)[0].id + ' 23:59:59');                       
+                       jQuery(this).toggleClass('selectedDay');
+                    });
+                  });
+              </script>
+              <!-- Calendar-->
+              </div>        
+          </div>
+          </tal:calendar>
+          
+          <tal:daterange tal:condition="view/use_daterange">
+          <div class="field collapsible">
+          <label for="startRange"    
+                 i18n:translate="label_dateRange"
+                 class="collapser collapsed">Date Range:</label><br/>
+              <div class="collapse">
+             <!-- Date Range -->
+                  <label for="startRange">Start Date :</label><br/>
+                  <input id="startRange" 
+                         class="date-pick"
+                         type="text" 
+                         value=""
+                         size="11"
+                         title="Start Date">
+                  <a href='#' id="startRangeImg">
+                  <img src="" 
+                       tal:attributes="src string:${navigation_root_url}/++resource++pickerimages/calendar.png;"/>
+                  </a>
+                  <br/>
+                  <span>until</span>
+                  <br />
+                  <label for="endRange">End Date :</label><br/>
+                  <input id="endRange" 
+                         class="date-pick"
+                         type="text" 
+                         value=""
+                         size="11"
+                         title="End Date"/>
+                  <a href='#' id="endRangeImg">
+                  <img src="" 
+                       tal:attributes="src string:${navigation_root_url}/++resource++pickerimages/calendar.png;"/>
+                  </a>
+                  <br/>
+                  <script language="JavaScript">
+                      var LOCALE = {
+                            days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
+                            daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
+                            daysMin: ["D", "S", "T", "Q", "Q", "S", "S", "D"],
+                            months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                            monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+                            weekMin: 's'
+                      };
+                      jQuery(document).ready(function() {
+                          jQuery('#startRangeImg').DatePicker({
+                                  eventName:'click',
+                                  format:'d/m/Y',
+                                  starts: 1,
+                                  locale: LOCALE,
+                                  position: 'bottom',
+                                  date:'1/1/2010',
+                                  onBeforeShow: function(){
+                                      if (jQuery('#startRange').val()){
+                                          jQuery('#startRange').DatePickerSetDate(jQuery('#startRange').val(), true);
+                                      }
+                                  },
+                                  onChange: function(formated, dates){
+                                      jQuery('#startRange').val(formated);
+                                      jQuery('#startRangeImg').DatePickerHide();
+
+                                  }
+                              });
+                          jQuery('#endRangeImg').DatePicker({
+                                  eventName:'click',
+                                  format:'d/m/Y',
+                                  date:new Date(),
+                                  starts: 1,
+                                  locale: LOCALE,
+                                  position: 'bottom',
+                                  onBeforeShow: function(){
+                                      if (jQuery('#endRange').val()){
+                                          jQuery('#endRange').DatePickerSetDate(jQuery('#endRange').val(), true);
+                                      }
+                                  },
+                                  onChange: function(formated, dates){
+                                      jQuery('#endRange').val(formated);
+                                      jQuery('#endRangeImg').DatePickerHide();
+                                  }
+                              });
+                          jQuery('#portletsearchform').submit(function(){
+                              var startRangeVal = jQuery('#startRange').val();
+                              var endRangeVal = jQuery('#endRange').val();
+                              if (startRangeVal !=''){
+                                  startRangeVal = startRangeVal.split("/");
+                                  startRangeVal = startRangeVal[2] + '/' + startRangeVal[1] + '/' + startRangeVal[0] + ' 00:00:00';
+                                  jQuery('#dateStart').val(startRangeVal);
+                              }
+                              if (endRangeVal !=''){
+                                  endRangeVal = endRangeVal.split("/");
+                                  endRangeVal = endRangeVal[2] + '/' + endRangeVal[1] + '/' + endRangeVal[0] + ' 23:59:59';
+                                  jQuery('#dateEnd').val(endRangeVal);
+                              }
+                            });
+                         });
+                  </script>
+              <!-- Date Range -->
+              </div>
+             </div>
+          </tal:daterange>
+          <tal:datecontrols tal:condition="python:view.use_daterange or view.use_calendar">
+            <input id="dateStart" 
+                   value=""
+                   type="hidden"
+                   name="created:list:date">
+            <input id="dateEnd" 
+                   value=""
+                   type="hidden"
+                   name="created:list:date">
+            <input id="dateRange" 
+                   value="range:minmax"
+                   type="hidden"
+                   name="created_usage">
+            <script>
+                jQuery(document).ready(function() {
+                    jQuery('#portletsearchform').submit(function(){
+                        var dateStart = jQuery('#dateStart');
+                        var dateEnd = jQuery('#dateEnd');
+                        var dateRange = jQuery('#dateRange');
+                        if (dateStart.val()=='' || dateEnd.val()==''){
+                            dateStart.remove();
+                            dateEnd.remove();
+                            dateRange.remove();
+                        }
+                      });
+                   });
+            </script>
+          </tal:datecontrols>
+          <tal:types tal:condition="view/use_portal_types"
+                     tal:define="portal_types view/portal_types;
+                                 used_types  view/used_types;
+                                 all_checked python:(len(used_types) == len(request.get('portal_type', []))) or first_call;
+                                 toggle_select_state python:all_checked and 'true' or 'false';">
+              <div class="field collapsible">
+              <label for="portal_type"    
+                     i18n:translate="label_item_type"
+                     class="collapser collapsed">Types :</label><br/>
+              <div class="collapse"
+                   tal:define="typeLists python:context.createMultiColumnList(used_types, numCols=2, sort_on='self');">
+                   <span class="optionsToggle">
+                       <input type="checkbox"
+                              onclick=""
+                              name="pt_toggle"
+                              value="#"
+                              id="pt_toggle"
+                              class="noborder"
+                              checked="checked"
+                              tal:attributes="checked python:all_checked and 'checked' or '';
+                                              onclick string:javascript:toggleSelect(this, 'portal_type:list', ${toggle_select_state});"/>
+                       <label for="pt_toggle"
+                              i18n:translate="label_toggle"
+                              >Select All/None
+                       </label>
+                   </span>
+                  <tal:sublist tal:repeat="sublist typeLists">
+                  <tal:items repeat="type sublist">
+                  <input type="checkbox"
+                         name="portal_type:list"
+                         value="#"
+                         class="noborder"
+                         checked="checked"
+                         tal:attributes="value type;
+                                         id string:portal_type_${repeat/sublist/number}_${repeat/type/number};
+                                         checked python:((type in request.get('portal_type', [])) or first_call) and 'checked' or ''"/>
+                  <label for=""
+                         i18n:translate=""
+                         tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
+                         tal:content="python: portal_types.getTypeInfo(type).Title()"
+                         />
+                  <br />
+                  </tal:items>
+                  </tal:sublist>
+              </div>
+             </div>
+          </tal:types>
+          <input class="searchButton"
+              id="portletSearchSubmit"
+              type="submit"
+              value="Search"
+              i18n:attributes="value label_search;"/>
+        </div>
+      </form>
+      <script type="text/javascript">
+      jQuery(document).ready(function() {
+        jQuery(function($){$('.field.collapsible').do_search_collapse();});
+      });
+      </script>
+      <div class="visualClear"><!-- --></div>
+    </dd>
+
+    <dd class="portletFooter">
+    </dd>
+</dl>
+</html>

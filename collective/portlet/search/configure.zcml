@@ -1,0 +1,37 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="collective.portlet.search">
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <include package=".browser" />
+    <include file="dependencies.zcml" />
+    
+    <genericsetup:registerProfile
+        name="default"
+        title="collective.portlet.search"
+        directory="profiles/default"
+        description="collective.portlet.search"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title; description"
+        />
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="collective.portlet.search"
+        directory="profiles/uninstall"
+        description="Uninstall collective.portlet.search"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title; description"
+        />        
+    <i18n:registerTranslations directory="locales" />
+    <include package=".upgrades" />
+
+    <!-- -*- extra stuff goes here -*- -->
+
+  <include package=".portlets" />
+  
+    
+</configure>
