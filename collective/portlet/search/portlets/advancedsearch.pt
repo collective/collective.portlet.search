@@ -63,7 +63,7 @@
                  class="collapser collapsed">Date Range:</label><br/>
               <div class="collapse">
              <!-- Date Range -->
-                  <label for="startRange">Start Date :</label><br/>
+                  <label for="startRange" class="sublabel">Start Date :</label><br/>
                   <input id="startRange" 
                          class="date-pick"
                          type="text" 
@@ -77,7 +77,7 @@
                   <br/>
                   <span>until</span>
                   <br />
-                  <label for="endRange">End Date :</label><br/>
+                  <label for="endRange" class="sublabel">End Date :</label><br/>
                   <input id="endRange" 
                          class="date-pick"
                          type="text" 
