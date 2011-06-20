@@ -230,6 +230,11 @@
               </div>
              </div>
           </tal:types>
+          <input id="path" 
+                 value=""
+                 type="hidden"
+                 name="path"
+                 tal:attributes="view/root">
           <input class="searchButton"
               id="portletSearchSubmit"
               type="submit"
