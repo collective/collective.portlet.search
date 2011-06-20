@@ -4,8 +4,8 @@
 .portletSearch .selectedDay {font-weight:bold;}
 .portletSearch .collapse {padding-top:10px;}
 .portletSearch .optionsToggle {border:0;background:transparent;}
-.portletSearch .sublabel {font-size:88%;}
-.portletSearch .discreet {color:#666666;font-size:85%;}
+.portletSearch label.sublabel {font-size:88%!Important;}
+.portletSearch .discreet {color:#666666;font-size:85%!Important;;}
 
 div.datepicker {
 	font-family: Arial, Helvetica, sans-serif;

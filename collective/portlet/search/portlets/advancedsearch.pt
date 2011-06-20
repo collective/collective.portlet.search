@@ -75,9 +75,10 @@
                        tal:attributes="src string:${navigation_root_url}/++resource++pickerimages/calendar.png;"/>
                   </a>
                   <br/>
-                  <span>until</span>
+                  <span class="discreet">until</span>
                   <br />
-                  <label for="endRange" class="sublabel">End Date :</label><br/>
+                  <label for="endRange" class="sublabel
+                                               sublabel">End Date :</label><br/>
                   <input id="endRange" 
                          class="date-pick"
                          type="text" 
