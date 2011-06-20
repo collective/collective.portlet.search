@@ -13,8 +13,8 @@
       />
       
   <browser:resource 
-      name="datePicker.css" 
-      file="datePicker.css"
+      name="portletsearch.css" 
+      file="portletsearch.css"
       />
   <browser:resource 
       name="jquery.datePicker.js" 
