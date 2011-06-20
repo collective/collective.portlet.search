@@ -7,10 +7,12 @@ collective.portlet.search
 Overview
 --------
 
+This package provides a Plone portlet with advanced search options. 
+
 Requirements
 ------------
 
-    - Plone >= 3.2.x (http://plone.org/products/plone)
+    - Plone >= 4.0.x (http://plone.org/products/plone)
     
 Installation
 ------------
@@ -24,19 +26,6 @@ To enable this product,on a buildout based installation:
         ...
         eggs = 
             collective.portlet.search
-
-    2. Tell the plone.recipe.zope2instance recipe to install a ZCML slug::
-
-        [instance]
-        ...
-        zcml = 
-            ...
-            collective.portlet.search
-    
-
-If another package depends on the collective.portlet.search egg or 
-includes its zcml directly you do not need to specify anything in the 
-buildout configuration: buildout will detect this automatically.
 
 After updating the configuration you need to run the ''bin/buildout'',
 which will take care of updating your system.

@@ -35,7 +35,5 @@ setup(name='collective.portlet.search',
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      setup_requires=["PasteScript"],
-      paster_plugins=["ZopeSkel"],
       )
 
