@@ -20,7 +20,7 @@
         />
     <genericsetup:registerProfile
         name="uninstall"
-        title="Advanced Search Portlet"
+        title="Uninstall Advanced Search Portlet"
         directory="profiles/uninstall"
         description="Uninstall collective.portlet.search"
         provides="Products.GenericSetup.interfaces.EXTENSION"
