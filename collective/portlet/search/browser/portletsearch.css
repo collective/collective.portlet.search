@@ -1,8 +1,11 @@
-.selectedDay{
-   font-size: 14px;
-}
+.portletSearch .portlet-search-gadget-nols {margin-bottom: 10px;}
+.portletSearch .month {background:#EFEFEF;}
+.portletSearch .today {border:1px solid #DDDDDD;}
+.portletSearch .selectedDay {font-weight:bold;}
+.portletSearch .collapse {padding-top:10px;}
+.portletSearch .optionsToggle {border:0;background:transparent;}
+
 div.datepicker {
-	position: relative;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	width: 196px;
@@ -12,6 +15,7 @@ div.datepicker {
 	top: 0;
 	left: 0;
 	display: none;
+    margin-left: -110px;
 }
 .datepickerContainer {
 	background: #121212;
@@ -192,3 +196,4 @@ td.datepickerSpecial a {
 td.datepickerSpecial.datepickerSelected a {
 	background: #a00;
 }
+

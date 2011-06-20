@@ -19,11 +19,11 @@
     <dd class="portletItem">
       <form id="portletsearchform" action="search"
             tal:attributes="action view/search_action">
-        <div class="LSBox">
+        <div>
           <input class="searchField inputLabel"
               name="SearchableText"
               type="text"
-              size="15"
+              size="25"
               title="Search Site"
               i18n:attributes="title title_search_title;"
               tal:attributes="value request/SearchableText|nothing;
@@ -37,9 +37,68 @@
                  class="collapser collapsed">Date :</label><br/>
               <div class="collapse">
               <!-- Calendar-->
-              <table tal:replace="structure view/renderedCalendar">
-                
-              </table>
+                  <table class="ploneCalendar"
+                         summary="Calendar"
+                         i18n:domain="plone"
+                         i18n:attributes="summary summary_calendar;"
+                         tal:define="year view/year;"
+                      ><caption class="hiddenStructure"
+                               tal:content="view/monthName">Month name</caption>
+                      <thead>
+                          <tr class="month">
+                              <th colspan="7">
+                                  <a href="#" rel="nofollow"
+                                     title="Previous month"
+                                     tal:define="prevMonthMonth view/prevMonthMonth;
+                                                 prevMonthYear view/prevMonthYear"
+                                     tal:attributes="id python:'calendar-previous';
+                                                     href python:'%s?month:int=%d&amp;year:int=%d' % (request['ACTUAL_URL'], prevMonthMonth, prevMonthYear,);
+                                                     class string:kssCalendarChange kssattr-year-${prevMonthYear} kssattr-month-${prevMonthMonth} calendarPrevious;"
+                                     i18n:attributes="title title_previous_month;">&laquo;</a>
+
+                                  <span i18n:translate="" tal:omit-tag="">
+                                      <span i18n:name="monthname" i18n:translate=""
+                                            tal:content="view/monthName"
+                                            tal:omit-tag="">monthname</span>
+                                      <span i18n:name="year" i18n:translate=""
+                                            tal:content="year"
+                                            tal:omit-tag="">year</span>
+                                  </span>
+                                  <a href="#" rel="nofollow"
+                                     title="Next month"
+                                     tal:define="nextMonthMonth view/nextMonthMonth;
+                                                 nextMonthYear view/nextMonthYear"
+                                     tal:attributes="id python:'calendar-next';
+                                                     href python:'%s?month:int=%d&amp;year:int=%d' % (request['ACTUAL_URL'], nextMonthMonth, nextMonthYear,);
+                                                     class string:kssCalendarChange kssattr-year-${nextMonthYear} kssattr-month-${nextMonthMonth} calendarNext;"
+                                     i18n:attributes="title title_next_month;">&raquo;</a>
+                              </th>
+                          </tr>
+                          <tr class="weekdays"
+                              ><tal:data tal:repeat="weekday view/getWeekdays"
+                                  ><th scope="col"
+                                       i18n:translate=""
+                                       tal:content="weekday">Su</th
+                              ></tal:data>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr tal:repeat="week view/renderCalendar"
+                              ><tal:block repeat="day week"
+                                  ><tal:day define="daynumber day/day;"
+                                      ><tal:block define="is_today day/is_today;
+                                                          date day/date;
+                                                          thisMonth day/thisMonth;"
+                                              ><td 
+                                                  tal:attributes="class python:' '.join([(is_today and 'today' or (thisMonth and 'month' or 'othermonth')),'selectableDay']);
+                                                                  id python:date;"
+                                                 ><span tal:replace="daynumber">42</span></td
+                                        ></tal:block
+                                  ></tal:day
+                              ></tal:block>
+                          </tr>
+                      </tbody>
+                  </table>
               <script language="JavaScript">
                   jQuery(document).ready(function() {
                     jQuery('.selectableDay').bind('click',function(){
@@ -207,7 +266,7 @@
                        <label for="pt_toggle"
                               i18n:translate="label_toggle"
                               >Select All/None
-                       </label>
+                       </label><br />
                    </span>
                   <tal:sublist tal:repeat="sublist typeLists">
                   <tal:items repeat="type sublist">
