@@ -220,7 +220,7 @@ class Renderer(BaseRenderer):
                 days.append({'day': int(d), 
                              'date': date, 
                              'thisMonth':int(m) == month,
-                             'is_today':self.isToday(int(d))})
+                             'is_today':self.isToday(int(d)) and int(m) == month})
             weeks.append(days)
         return weeks
     
