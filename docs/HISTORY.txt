@@ -6,8 +6,3 @@ Changelog
 
 - Nothing changed yet.
 
-
-0.5 (2011-08-02)
-----------------
-
-* Initial release
