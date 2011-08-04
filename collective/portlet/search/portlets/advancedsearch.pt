@@ -37,18 +37,30 @@
                  class="collapser collapsed">Date :</label><br/>
               <div class="collapse">
               <!-- Calendar-->
+                  <div id="advsearch_calendar_container">
                   <table tal:replace="structure view/renderedCalendar">		
                   </table>
+                  </div>
               <script language="JavaScript">
+                  function prepareCalendar(){
+                      jQuery('.selectableDay').bind('click',function(){
+                         if (jQuery('.selectedDay').length!=0){
+                             jQuery('.selectedDay').toggleClass('selectedDay');
+                         }
+                         jQuery('#dateStart').val(jQuery(this)[0].id + ' 00:00:00');
+                         jQuery('#dateEnd').val(jQuery(this)[0].id + ' 23:59:59');                       
+                         jQuery(this).toggleClass('selectedDay');
+                      });
+                      var portlethash = jQuery('#advsearch_calendar').parents('.portletWrapper').attr('class').split('kssattr-portlethash-')[1];
+                      
+                      jQuery('#advsearch-calendar-next').bind('click',function(){
+                          var url = jQuery(this).attr('href') + '&portlethash=' + portlethash;
+                          jQuery('#advsearch_calendar_container').load(url, function() {prepareCalendar();});
+                          return false;
+                      });
+                  }
                   jQuery(document).ready(function() {
-                    jQuery('.selectableDay').bind('click',function(){
-                       if (jQuery('.selectedDay').length!=0){
-                           jQuery('.selectedDay').toggleClass('selectedDay');
-                       }
-                       jQuery('#dateStart').val(jQuery(this)[0].id + ' 00:00:00');
-                       jQuery('#dateEnd').val(jQuery(this)[0].id + ' 23:59:59');                       
-                       jQuery(this).toggleClass('selectedDay');
-                    });
+                    prepareCalendar();
                   });
               </script>
               <!-- Calendar-->
@@ -153,7 +165,7 @@
                   </script>
               <!-- Date Range -->
               </div>
-             </div>
+          </div>
           </tal:daterange>
           <tal:datecontrols tal:condition="python:view.use_daterange or view.use_calendar">
             <input id="dateStart" 
@@ -234,7 +246,7 @@
                  value=""
                  type="hidden"
                  name="path"
-                 tal:attributes="view/root">
+                 tal:attributes="value view/root">
           <input class="searchButton"
               id="portletSearchSubmit"
               type="submit"
@@ -244,7 +256,7 @@
       </form>
       <script type="text/javascript">
       jQuery(document).ready(function() {
-        jQuery(function($){$('.field.collapsible').do_search_collapse();});
+        //jQuery(function($){$('.field.collapsible').do_search_collapse();});
       });
       </script>
       <div class="visualClear"><!-- --></div>

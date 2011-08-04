@@ -136,9 +136,7 @@ class Assignment(base.Assignment):
 class Renderer(BaseRenderer):
     """Portlet renderer.
     """
-    
     _template = ViewPageTemplateFile('advancedsearch.pt')
-    _templatecalendar = ViewPageTemplateFile('calendar.pt')
         
     def __init__(self, context, request, view, manager, data):
         BaseRenderer.__init__(self, context, request, view, manager, data)
@@ -199,30 +197,10 @@ class Renderer(BaseRenderer):
     def used_types(self):
         return self.friendly_types
     
-    @ram.cache(_render_calendar_cachekey)
     def renderedCalendar(self):
         ''' Cache the calendar page template'''
-        return self._templatecalendar()
-    
-    def renderCalendar(self):
-        """ recreates a sequence of weeks, by days each day is a mapping.
-            {'day': #, 'date': '','thisMonth':bool}
-        """
-        year = int(self.year)
-        month = int(self.month)
-        daysByWeek = util.monthcalendar(year, month)
-        weeks = []
-
-        for week in daysByWeek:
-            days = []
-            for date in week:
-                y,m,d = date.split('/')
-                days.append({'day': int(d), 
-                             'date': date, 
-                             'thisMonth':int(m) == month,
-                             'is_today':self.isToday(int(d)) and int(m) == month})
-            weeks.append(days)
-        return weeks
+        return getMultiAdapter((self.context, self.request),
+                                        name=u'advsearch_calendar')()
     
 class AddForm(base.AddForm):
     """Portlet add form.
