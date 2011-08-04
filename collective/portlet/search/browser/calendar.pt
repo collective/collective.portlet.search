@@ -1,0 +1,61 @@
+<table class="ploneCalendar"
+       summary="Calendar"
+       i18n:domain="plone"
+       i18n:attributes="summary summary_calendar;"
+       id="advsearch_calendar"
+       tal:define="year view/year;"
+    ><caption class="hiddenStructure"
+             tal:content="view/monthName">Month name</caption>
+    <thead>
+        <tr class="month">
+            <th colspan="7">
+                <a href="#" rel="nofollow"
+                   title="Previous month"
+                   tal:define="prevMonthMonth view/prevMonthMonth;
+                               prevMonthYear view/prevMonthYear"
+                   tal:attributes="id python:'advsearch-calendar-previous';
+                                   href python:'%s/%s?month:int=%d&amp;year:int=%d' % (request['ACTUAL_URL'],'advsearch_calendar', prevMonthMonth, prevMonthYear,);"
+                   i18n:attributes="title title_previous_month;">&laquo;</a>
+
+                <span i18n:translate="" tal:omit-tag="">
+                    <span i18n:name="monthname" i18n:translate=""
+                          tal:content="view/monthName"
+                          tal:omit-tag="">monthname</span>
+                    <span i18n:name="year" i18n:translate=""
+                          tal:content="year"
+                          tal:omit-tag="">year</span>
+                </span>
+                <a href="#" rel="nofollow"
+                   title="Next month"
+                   tal:define="nextMonthMonth view/nextMonthMonth;
+                               nextMonthYear view/nextMonthYear"
+                   tal:attributes="id python:'advsearch-calendar-next';
+                                   href python:'%s/%s?month:int=%d&amp;year:int=%d' % (request['ACTUAL_URL'], 'advsearch_calendar', nextMonthMonth, nextMonthYear,);"
+                   i18n:attributes="title title_next_month;">&raquo;</a>
+            </th>
+        </tr>
+        <tr class="weekdays"
+            ><tal:data tal:repeat="weekday view/getWeekdays"
+                ><th scope="col"
+                     i18n:translate=""
+                     tal:content="weekday">Su</th
+            ></tal:data>
+        </tr>
+    </thead>
+    <tbody>
+        <tr tal:repeat="week view/renderCalendar"
+            ><tal:block repeat="day week"
+                ><tal:day define="daynumber day/day;"
+                    ><tal:block define="is_today day/is_today;
+                                        date day/date;
+                                        thisMonth day/thisMonth;"
+                            ><td 
+                                tal:attributes="class python:' '.join([(is_today and 'today' or (thisMonth and 'month' or 'othermonth')),'selectableDay']);
+                                                id python:date;"
+                               ><span tal:replace="daynumber">42</span></td
+                      ></tal:block
+                ></tal:day
+            ></tal:block>
+        </tr>
+    </tbody>
+</table>

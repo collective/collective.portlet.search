@@ -11,7 +11,7 @@
       name="pickerimages" 
       directory="images"
       />
-      
+  
   <browser:resource 
       name="portletsearch.css" 
       file="portletsearch.css"
@@ -20,5 +20,13 @@
       name="jquery.datePicker.js" 
       file="datepicker.js"
       />
+  
+  <!-- Browser pages-->
+  <browser:page
+      name="advsearch_calendar"
+      for="*"
+      class=".calendar.CalendarView"
+      permission="zope2.View"
+    />
   
 </configure>
