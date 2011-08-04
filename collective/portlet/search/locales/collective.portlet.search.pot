@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-02-27 17:49+0000\n"
+"POT-Creation-Date: 2011-08-04 17:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,5 +12,89 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: collective.portlet.search\n"
+"Domain: DOMAIN\n"
+
+#: ../portlets/advancedsearch.py:106
+msgid "Allow user to select wich portal types will be shown."
+msgstr ""
+
+#: ../portlets/advancedsearch.py:75
+msgid "Portlet title"
+msgstr ""
+
+#: ../portlets/advancedsearch.py:76
+msgid "Search"
+msgstr ""
+
+#: ../portlets/advancedsearch.py:101
+msgid "Search using keywords."
+msgstr ""
+
+#: ../portlets/advancedsearch.py:74
+msgid "Title"
+msgstr ""
+
+#: ../portlets/advancedsearch.py:91
+msgid "Use a calendar to restrict search to a given date."
+msgstr ""
+
+#: ../portlets/advancedsearch.py:90
+msgid "Use calendar"
+msgstr ""
+
+#: ../portlets/advancedsearch.py:95
+msgid "Use date range"
+msgstr ""
+
+#: ../portlets/advancedsearch.py:96
+msgid "Use fields to restrict search to an interval of time."
+msgstr ""
+
+#: ../portlets/advancedsearch.py:100
+msgid "Use keyword search"
+msgstr ""
+
+#: ../portlets/advancedsearch.py:105
+msgid "Use portal types selection"
+msgstr ""
+
+#. Default: "You may search for and choose a folder to act as the root of search for this portlet. Leave blank to use the Plone site root. "
+#: ../portlets/advancedsearch.py:81
+msgid "help_advsearch_root"
+msgstr ""
+
+#. Default: "Root node"
+#: ../portlets/advancedsearch.py:80
+msgid "label_advsearch_root_path"
+msgstr ""
+
+#. Default: "Date Range:"
+#: ../portlets/advancedsearch.pt:73
+msgid "label_dateRange"
+msgstr ""
+
+#. Default: "Types :"
+#: ../portlets/advancedsearch.pt:204
+msgid "label_item_type"
+msgstr ""
+
+#. Default: "Search"
+#: ../portlets/advancedsearch.pt:250
+msgid "label_search"
+msgstr ""
+
+#. Default: "Date :"
+#: ../portlets/advancedsearch.pt:35
+msgid "label_startRange"
+msgstr ""
+
+#. Default: "Select All/None"
+#: ../portlets/advancedsearch.pt:219
+msgid "label_toggle"
+msgstr ""
+
+#. Default: "Search Site"
+#: ../portlets/advancedsearch.pt:23
+msgid "title_search_title"
+msgstr ""
 

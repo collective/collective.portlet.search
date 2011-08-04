@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-02-27 17:49+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2011-08-04 17:18+0000\n"
+"PO-Revision-Date: 2011-08-04 14:23-0300\n"
 "Last-Translator: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -13,4 +13,88 @@ msgstr ""
 "Language-Name: Brazilian Portuguese\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.portlet.search\n"
+
+#: ../portlets/advancedsearch.py:106
+msgid "Allow user to select wich portal types will be shown."
+msgstr "Permite ao usuário selecionar quais tipos de conteúdo serão exibidos"
+
+#: ../portlets/advancedsearch.py:75
+msgid "Portlet title"
+msgstr "Título do portlet"
+
+#: ../portlets/advancedsearch.py:76
+msgid "Search"
+msgstr "Busca"
+
+#: ../portlets/advancedsearch.py:101
+msgid "Search using keywords."
+msgstr "Burscar utilizando tags (palavras-chave)"
+
+#: ../portlets/advancedsearch.py:74
+msgid "Title"
+msgstr "Título"
+
+#: ../portlets/advancedsearch.py:91
+msgid "Use a calendar to restrict search to a given date."
+msgstr "Utilizar um calendário para restringir a busca a uma data específica."
+
+#: ../portlets/advancedsearch.py:90
+msgid "Use calendar"
+msgstr "Utilizar calendário"
+
+#: ../portlets/advancedsearch.py:95
+msgid "Use date range"
+msgstr "Utilizar seleção de datas"
+
+#: ../portlets/advancedsearch.py:96
+msgid "Use fields to restrict search to an interval of time."
+msgstr "Utilizar campos para seleção de um intervalo de tempo para restrição da busca"
+
+#: ../portlets/advancedsearch.py:100
+msgid "Use keyword search"
+msgstr "Utilizar busca por tags"
+
+#: ../portlets/advancedsearch.py:105
+msgid "Use portal types selection"
+msgstr "Utilizar busca por tipos de conteúdo"
+
+#. Default: "You may search for and choose a folder to act as the root of search for this portlet. Leave blank to use the Plone site root. "
+#: ../portlets/advancedsearch.py:81
+msgid "help_advsearch_root"
+msgstr "Você pode buscar por e escolher uma pasta para ser a raíz da busca para este portlet. Deixe em branco para buscar em todo o site Plone."
+
+#. Default: "Root node"
+#: ../portlets/advancedsearch.py:80
+msgid "label_advsearch_root_path"
+msgstr "Raiz da busca"
+
+#. Default: "Date Range:"
+#: ../portlets/advancedsearch.pt:73
+msgid "label_dateRange"
+msgstr "Intervalo de datas :"
+
+#. Default: "Types :"
+#: ../portlets/advancedsearch.pt:204
+msgid "label_item_type"
+msgstr "Tipos :"
+
+#. Default: "Search"
+#: ../portlets/advancedsearch.pt:250
+msgid "label_search"
+msgstr "Busca"
+
+#. Default: "Date :"
+#: ../portlets/advancedsearch.pt:35
+msgid "label_startRange"
+msgstr "Data :"
+
+#. Default: "Select All/None"
+#: ../portlets/advancedsearch.pt:219
+msgid "label_toggle"
+msgstr "Selecionar todos/nenhum"
+
+#. Default: "Search Site"
+#: ../portlets/advancedsearch.pt:23
+msgid "title_search_title"
+msgstr "Buscar no site"
 
