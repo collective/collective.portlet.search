@@ -58,6 +58,11 @@
                           jQuery('#advsearch_calendar_container').load(url, function() {prepareCalendar();});
                           return false;
                       });
+                      jQuery('#advsearch-calendar-previous').bind('click',function(){
+                          var url = jQuery(this).attr('href') + '&portlethash=' + portlethash;
+                          jQuery('#advsearch_calendar_container').load(url, function() {prepareCalendar();});
+                          return false;
+                      });
                   }
                   jQuery(document).ready(function() {
                     prepareCalendar();

@@ -14,7 +14,7 @@
                    tal:define="prevMonthMonth view/prevMonthMonth;
                                prevMonthYear view/prevMonthYear"
                    tal:attributes="id python:'advsearch-calendar-previous';
-                                   href python:'%s/%s?month:int=%d&amp;year:int=%d' % (request['ACTUAL_URL'],'advsearch_calendar', prevMonthMonth, prevMonthYear,);"
+                                   href python:'%s/%s?month:int=%d&amp;year:int=%d' % (context.absolute_url(),'advsearch_calendar', prevMonthMonth, prevMonthYear,);"
                    i18n:attributes="title title_previous_month;">&laquo;</a>
 
                 <span i18n:translate="" tal:omit-tag="">
@@ -30,7 +30,7 @@
                    tal:define="nextMonthMonth view/nextMonthMonth;
                                nextMonthYear view/nextMonthYear"
                    tal:attributes="id python:'advsearch-calendar-next';
-                                   href python:'%s/%s?month:int=%d&amp;year:int=%d' % (request['ACTUAL_URL'], 'advsearch_calendar', nextMonthMonth, nextMonthYear,);"
+                                   href python:'%s/%s?month:int=%d&amp;year:int=%d' % (context.absolute_url(), 'advsearch_calendar', nextMonthMonth, nextMonthYear,);"
                    i18n:attributes="title title_next_month;">&raquo;</a>
             </th>
         </tr>

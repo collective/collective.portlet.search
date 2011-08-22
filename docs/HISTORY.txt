@@ -4,5 +4,5 @@ Changelog
 0.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+* Use context.absolute_url() instead of request['ACTUAL_URL'] [erico_andrei]
 
